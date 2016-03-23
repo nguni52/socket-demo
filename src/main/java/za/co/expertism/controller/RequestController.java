@@ -10,6 +10,7 @@ import org.springframework.messaging.simp.annotation.SendToUser;
 import org.springframework.messaging.simp.annotation.SubscribeMapping;
 import org.springframework.stereotype.Controller;
 import za.co.expertism.model.Request;
+import za.co.expertism.model.ResponseMessage;
 import za.co.expertism.model.builder.RequestBuilder;
 import za.co.expertism.service.RequestService;
 
@@ -18,11 +19,12 @@ import za.co.expertism.service.RequestService;
  */
 @Controller
 public class RequestController {
+    private Log log = LogFactory.getLog(RequestController.class);
     private static final String SUBSCRIBE = "subscribe";
     public static final String HOME_SUBSCRIBE = MainController.HOME + SUBSCRIBE;
     private static final String SEND = "send";
     public static final String HOME_SEND = MainController.HOME + SEND;
-    private Log log = LogFactory.getLog(RequestController.class);
+
     @Autowired
     private RequestService requestService;
 
@@ -33,9 +35,10 @@ public class RequestController {
      * @throws Exception
      */
     @SubscribeMapping(HOME_SUBSCRIBE)
-    public String subscribe() throws Exception {
+    public ResponseMessage subscribe() throws Exception {
 //        log.info("Doing the subscription \n\n\n\n");
-        return "Subscribe successful";
+
+        return new ResponseMessage("Subscribe successful", true);
     }
 
     /**
@@ -47,9 +50,9 @@ public class RequestController {
      */
     @MessageMapping(HOME_SEND)
     @SendToUser("/queue/auth")
-    public String send(@Payload String test) {
+    public ResponseMessage send(@Payload String test) {
         Request request = RequestBuilder.buildARequest(1);
-        return requestService.sendMessage(request);
+        return new ResponseMessage(requestService.sendMessage(request), true);
     }
 
 

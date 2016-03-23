@@ -14,18 +14,25 @@ import za.co.expertism.util.XStreamTranslator;
  */
 @Service
 public class RequestService {
-    private final MessageSendingOperations<String> messagingTemplate;
+    private Log log = LogFactory.getLog(RequestService.class);
     @Value("${connection.host}")
     private String host;
     @Value("${connection.port}")
     private String port;
-    private Log log = LogFactory.getLog(RequestService.class);
+    private final MessageSendingOperations<String> messagingTemplate;
 
     @Autowired
     public RequestService(MessageSendingOperations<String> messagingTemplate) {
         this.messagingTemplate = messagingTemplate;
     }
 
+    /**
+     * This method receives the request object, processes it to produce xml, and then sends the xml payload to the
+     * remote server.
+     *
+     * @param request - object with user details for authorization request
+     * @return - message to return once user has successfully send message
+     */
     public String sendMessage(Request request) {
         String url = host + ":" + port;
         String xml = XStreamTranslator.getInstance().toXMLString(request);

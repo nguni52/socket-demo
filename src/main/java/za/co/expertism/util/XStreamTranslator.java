@@ -55,8 +55,8 @@ public class XStreamTranslator {
     }
     /**
      * create XML file from the given object with custom file name
+     * @param objTobeXMLTranslated
      * @param fileName
-     * @param file
      * @throws IOException
      */
     public void toXMLFile(Object objTobeXMLTranslated, String fileName ) throws IOException {
@@ -85,7 +85,7 @@ public class XStreamTranslator {
      * create XML file from the given object, file name is generated automatically (class name)
      * @param objTobeXMLTranslated
      * @throws IOException
-     * @throws XStreamTranslateException
+     * @throws IOException
      */
     public void toXMLFile(Object objTobeXMLTranslated) throws IOException {
         toXMLFile(objTobeXMLTranslated,objTobeXMLTranslated.getClass().getName()+".xml");
