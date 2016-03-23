@@ -7,7 +7,7 @@ stompClient.connect({}, function(frame) {//'testuser', 'pwd123xyz'
     stompClient.subscribe('/app/subscribe', function(message){
         console.log(message);
     });
-    stompClient.send('/app/send', {}, "testing baby");
+    stompClient.send('/app/send', {}, "testing ...");
 
     stompClient.subscribe('/user/queue/auth')
 });
