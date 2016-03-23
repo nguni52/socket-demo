@@ -1,5 +1,5 @@
 # socket-demo
-This is a demo to demonstrate how one can use websockets to send data. The data can be converted to an object, which can then be modified to xml. The xml data is then sent to a remote ip on a specific port. The demo uses spring-boot(1.3.3.RELEASE) to demonstrate these messaging capabilities.
+This is a demo to demonstrate how one can use websockets to send data. The data can be converted to an object, which can then be modified to xml. The xml data is then sent to a remote ip on a specific port. The demo uses spring-boot (1.3.3.RELEASE) to demonstrate these messaging capabilities.
 
 ## Build and run
 
